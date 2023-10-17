@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     reiniciarBtn.addEventListener("click", function () {
     texto.value = ""; 
+    clave.value = "";
     cifrado.value = ""; 
     });
 });
