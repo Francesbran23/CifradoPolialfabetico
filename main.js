@@ -58,27 +58,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function cifrarCesar(texto, desplazamiento) {
-    // Implementa la lógica del cifrado César
-    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const letrasMayusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const letrasMinusculas = 'abcdefghijklmnopqrstuvwxyz';
     return texto.replace(/[a-zA-Z]/g, function (match) {
+        let letras;
+        if (letrasMayusculas.includes(match)) {
+            letras = letrasMayusculas;
+        } else {
+            letras = letrasMinusculas;
+        }
         const indice = letras.indexOf(match);
-        const nuevoIndice = (indice + desplazamiento) % 52;
+        const nuevoIndice = (indice + desplazamiento) % letras.length;
         return letras.charAt(nuevoIndice);
     });
 }
 
 function descifrarCesar(texto, desplazamiento) {
-    // Implementa la lógica del descifrado César
-    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const letrasMayusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const letrasMinusculas = 'abcdefghijklmnopqrstuvwxyz';
     return texto.replace(/[a-zA-Z]/g, function (match) {
+        let letras;
+        if (letrasMayusculas.includes(match)) {
+            letras = letrasMayusculas;
+        } else {
+            letras = letrasMinusculas;
+        }
         const indice = letras.indexOf(match);
-        const nuevoIndice = (indice - desplazamiento + 52) % 52;
+        const nuevoIndice = (indice - desplazamiento + letras.length) % letras.length;
         return letras.charAt(nuevoIndice);
     });
 }
 
 function cifrarVigenere(texto, clave) {
-    // Implementa la lógica del cifrado Vigenère
     const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const claveRepetida = clave.repeat(Math.ceil(texto.length / clave.length)).substring(0, texto.length);
     let resultado = '';
@@ -102,7 +113,6 @@ function cifrarVigenere(texto, clave) {
 }
 
 function descifrarVigenere(texto, clave) {
-    // Implementa la lógica del descifrado Vigenère
     const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const claveRepetida = clave.repeat(Math.ceil(texto.length / clave.length)).substring(0, texto.length);
     let resultado = '';
